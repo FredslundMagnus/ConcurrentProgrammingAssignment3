@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fae5a6a9-2497-43ce-a54a-5c87a762ef01" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Alley.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alley.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAlley.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BasicAlley.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarControlI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarControlI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarDisplayI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarDisplayI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarTestingI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarTestingI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cars.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cars.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DoubleAlley.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DoubleAlley.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Field.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonGate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MonGate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SemGate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SemGate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semaphore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Semaphore.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="20MFwhVnlUOXYhQG6Za9Xhov6TL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Misc\Desktop\ConcurrentProgrammingAssignment3" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Misc\Desktop\ConcurrentProgrammingAssignment3" />
+      <recent name="F:\Misc\Desktop\ConcurrentProgrammingAssignment3\.idea" />
+      <recent name="F:\Misc\Desktop\ConcurrentProgrammingAssignment3\src" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Cars" />
+      <module name="ConcurrentProgrammingAssignment3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fae5a6a9-2497-43ce-a54a-5c87a762ef01" name="Default Changelist" comment="" />
+      <created>1635846789563</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1635846789563</updated>
+    </task>
+    <servers />
+  </component>
+</project>

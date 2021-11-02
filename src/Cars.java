@@ -1,8 +1,8 @@
 //Implementation of Graphical User Interface class
-//CP Lab 3
+//Mandatory assignment 3
 //Course 02158 Concurrent Programming, DTU, Fall 2021
 
-//Hans Henrik Lovengreen     Oct 25, 2021
+//Hans Henrik Lovengreen     Oct 28, 2021
 
 import java.awt.Color;
 import java.awt.Font;
@@ -562,14 +562,15 @@ class ControlPanel extends JPanel {
         
         barrier_panel.add(new JLabel("   "));
 
-        for (int i = 0; i <= 7; i++) {
-            barrier_threshold.addItem("" + (i + 2));
+        barrier_threshold.setMaximumRowCount(9);
+        for (int i = 0; i <= 8; i++) {
+            barrier_threshold.addItem("" + (i + 1));
         }
-        barrier_threshold.setSelectedIndex(currentThreshold - 2);
+        barrier_threshold.setSelectedIndex(currentThreshold - 1);
 
         barrier_threshold.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int t = barrier_threshold.getSelectedIndex() + 2; // Ignore
+                int t = barrier_threshold.getSelectedIndex() + 1; // Ignore
                                                                   // internal
                                                                   // changes
                 if (t != currentThreshold) {
@@ -610,7 +611,7 @@ class ControlPanel extends JPanel {
         barrier_panel.add(bridge_limit);
          */        
 
-        // add(barrier_panel);
+        add(barrier_panel);
 
         for (int i = 0; i < test_count; i++)
             test_choice.addItem("" + i);
@@ -639,7 +640,7 @@ class ControlPanel extends JPanel {
         // barrier_off.setEnabled(true);
         if (k != currentThreshold) {
             currentThreshold = k;
-            barrier_threshold.setSelectedIndex(k - 2);
+            barrier_threshold.setSelectedIndex(k - 1);
         }
         barrier_threshold.setEnabled(true);
     }     
@@ -686,7 +687,7 @@ public class Cars extends JFrame implements CarDisplayI {
     static final int width = 30; // Width of text area
     static final int minhistory = 50; // Min no. of lines kept
 
-    static final String version = "Lab3.2";
+    static final String version = "Man3.0";
 
     public static final int initialBridgeLimit = 6;
 
@@ -956,7 +957,7 @@ public class Cars extends JFrame implements CarDisplayI {
             return;
         }
 
-        if (k < 2 || k > 9) {
+        if (k < 1 || k > 9) {
             println("WARNING: Threshold value out of range: " + k + " (ignored)");
             if (done != null) done.V();
             return;
@@ -2081,9 +2082,9 @@ class Layout {
         }
 
         // Shed avoidance
-        tracksCW[1][0] = getPos(1, 1);
-        tracksCW[1][1] = getPos(1, 2);
-        tracksCW[1][2] = getPos(0, 2);
+        // tracksCW[1][0] = getPos(1, 1);
+        // tracksCW[1][1] = getPos(1, 2);
+        // tracksCW[1][2] = getPos(0, 2);
 
         // CW branching points
         for (int no = 5; no <= 8; no++) {
@@ -2135,7 +2136,7 @@ class Layout {
     }
 
     public static boolean isShedPos(Pos p) {
-        return (p.row == 0 && p.col < 2); // Upper left corner
+        return false; // (p.row == 0 && p.col < 2); // Upper left corner
     }
 
     public static boolean isHutPos(Pos p) {

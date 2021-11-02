@@ -1,8 +1,8 @@
 //Specification of Car Control interface 
-//CP Lab 3
+//Mandatory assignment 3
 //Course 02158 Concurrent Programming, DTU, Fall 2021
 
-//Hans Henrik Lovengreen     Oct 25, 2021
+//Hans Henrik Lovengreen     Oct 28, 2021
 
 interface CarControlI {
 

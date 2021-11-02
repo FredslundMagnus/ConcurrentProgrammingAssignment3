@@ -1,8 +1,8 @@
 //Implementation of CarControl class
-//CP Lab 3
+//Mandatory assignment 3
 //Course 02158 Concurrent Programming, DTU, Fall 2021
 
-//Hans Henrik Lovengreen     Oct 25, 2021
+//Hans Henrik Lovengreen     Oct 28, 2021
 
 
 import java.awt.Color;
@@ -16,6 +16,7 @@ class Conductor extends Thread {
     
     Field field;                     // Field control
     Alley alley;                     // Alley control    
+    Barrier barrier;                 // Barrier control    
 
     int no;                          // Car number
     Pos startpos;                    // Start position (provided by GUI)
@@ -26,12 +27,13 @@ class Conductor extends Thread {
     Pos curpos;                      // Current position 
     Pos newpos;                      // New position to go to
 
-    public Conductor(int no, CarDisplayI cd, Gate g, Field field, Alley alley) {
+    public Conductor(int no, CarDisplayI cd, Gate g, Field field, Alley alley, Barrier barrier) {
 
         this.no = no;
         this.cd = cd;
         this.field = field;
         this.alley = alley;
+        this.barrier = barrier;
         mygate = g;
         startpos = cd.getStartPos(no);
         barpos   = cd.getBarrierPos(no);  // For later use
@@ -75,22 +77,19 @@ class Conductor extends Thread {
         return pos.equals(startpos);
     }
 
-    /* Determine whether pos is right before alley is entered */
     boolean atEntry(Pos pos) {
-        return (pos.row ==  1 && pos.col ==  3) || (pos.row ==  2 && pos.col ==  1) || 
+        return (pos.row ==  1 && pos.col ==  1) || (pos.row ==  2 && pos.col ==  1) || 
                (pos.row == 10 && pos.col ==  0);
     }
 
-    /* Determine whether pos is right after alley is left */
     boolean atExit(Pos pos) {
-        return (pos.row ==  0 && pos.col ==  2) || (pos.row ==  9 && pos.col ==  1);
+        return (pos.row ==  0 && pos.col ==  0) || (pos.row ==  9 && pos.col ==  1);
     }
     
-    /* Determine whether pos is right after car no. has left inner alley */
-    boolean atInnerExit(Pos pos) {
-        return (no > 4 && (pos.row==1 && pos.col==0));
+    boolean atBarrier(Pos pos) {
+        return pos.equals(barpos);
     }
-    
+
     public void run() {
         try {
             CarI car = cd.newCar(no, col, startpos);
@@ -107,13 +106,14 @@ class Conductor extends Thread {
 
                 newpos = nextPos(curpos);
 
+                if (atBarrier(curpos)) barrier.sync(no);
+                
                 if (atEntry(curpos)) alley.enter(no);
                 field.enter(no, newpos);
 
                 car.driveTo(newpos);
 
                 field.leave(curpos);
-                if (atInnerExit(newpos)) alley.leaveInner(no);
                 if (atExit(newpos)) alley.leave(no);
 
                 curpos = newpos;
@@ -135,6 +135,7 @@ public class CarControl implements CarControlI{
     Gate[] gate;              // Gates
     Field field;              // Field
     Alley alley;              // Alley
+    Barrier barrier;          // Barrier
 
     public CarControl(CarDisplayI cd) {
         this.cd = cd;
@@ -142,10 +143,11 @@ public class CarControl implements CarControlI{
         gate = new Gate[9];
         field = new Field();
         alley = Alley.create();
+        barrier = Barrier.create(cd);
 
         for (int no = 0; no < 9; no++) {
             gate[no] = Gate.create();
-            conductor[no] = new Conductor(no,cd,gate[no],field,alley);
+            conductor[no] = new Conductor(no,cd,gate[no],field,alley,barrier);
             conductor[no].setName("Conductor-" + no);
             conductor[no].start();
         } 
@@ -160,23 +162,16 @@ public class CarControl implements CarControlI{
     }
 
     public void barrierOn() { 
-        cd.println("Barrier On not implemented in this version");
+        barrier.on();
     }
 
-    public void barrierOff() { 
-        cd.println("Barrier Off not implemented in this version");
+    public void barrierOff() {
+        barrier.off();
     }
 
-    public void setLimit(int k) { 
-        cd.println("Setting of bridge limit not implemented in this version");
-    }
-
-    public void barrierSet(int k) { 
-        cd.println("Barrier threshold setting not implemented in this version");
-        // This sleep is solely for illustrating how blocking affects the GUI
-        // Remove when feature is properly implemented.
-        try { Thread.sleep(3000); } catch (InterruptedException e) { }
-    }
+   public void barrierSet(int k) {
+        barrier.set(k);
+   }
     
     public void removeCar(int no) { 
         cd.println("Remove Car not implemented in this version");
