@@ -5,21 +5,41 @@
 //Hans Henrik Lovengreen     Oct 28, 2021
 
 class SafeBarrier extends Barrier {
-    
+    int arrived = 0;
+    boolean active = false;
+
     public SafeBarrier(CarDisplayI cd) {
         super(cd);
     }
 
     @Override
-    public void sync(int no) throws InterruptedException {
+    public synchronized void sync(int no) throws InterruptedException {
+
+        if (!active) return;
+        arrived++;
+
+
+        if (arrived < 9) {
+            wait();
+        }
+        while (active) {
+            wait();
+        }
+        arrived = 0;
+        notifyAll();
+
     }
 
     @Override
     public void on() {
+        active = true;
     }
 
     @Override
-    public void off() {
+    public synchronized void off() {
+        active = false;
+        arrived = 0;
+        notifyAll();
     }
 
 /*    
@@ -28,5 +48,5 @@ class SafeBarrier extends Barrier {
     public void set(int k) {
     }
 */
-    
+
 }

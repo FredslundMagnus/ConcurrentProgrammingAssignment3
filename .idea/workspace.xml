@@ -2,22 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fae5a6a9-2497-43ce-a54a-5c87a762ef01" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Alley.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alley.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAlley.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BasicAlley.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarControlI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarControlI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarDisplayI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarDisplayI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarTestingI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarTestingI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cars.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cars.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DoubleAlley.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DoubleAlley.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Field.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonGate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MonGate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SemGate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SemGate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaphore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Semaphore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Barrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Barrier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SafeBarrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SafeBarrier.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +24,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -48,7 +39,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="Cars" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Cars" />
       <module name="ConcurrentProgrammingAssignment3" />
       <method v="2">
