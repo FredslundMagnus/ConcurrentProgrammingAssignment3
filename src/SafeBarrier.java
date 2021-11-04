@@ -5,9 +5,6 @@
 //Hans Henrik Lovengreen     Oct 28, 2021
 
 class SafeBarrier extends Barrier {
-    int arrived = 0;
-    int count = 0;
-    int count2 = 0;
     boolean active = false, carsArrived = false;
     boolean[] allowToPass = new boolean[9];
     boolean[] arrivedCars = new boolean[9];
@@ -21,8 +18,6 @@ class SafeBarrier extends Barrier {
 
         if (!active) return;
         arrivedCars[no] = true;
-        arrived++;
-        count++;
         carsArrived = true;
         for (int i = 0; i < allowToPass.length; i++) {
             if(!allowToPass[i]) {
@@ -30,23 +25,17 @@ class SafeBarrier extends Barrier {
                 break;
             }
         }
-        while (!carsArrived && active) {
+        if (carsArrived == true) {
+            allowToPass = arrivedCars.clone();
+            notifyAll();
+        }
+        while (!allowToPass[no]) {
             wait();
         }
 
         notifyAll();
-        count--;
-        count2++;
-        while (count != 0 && active) {
-            wait();
-        }
-        notifyAll();
-        arrived = 0;
-        count2--;
-        while (count2 != 0) {
-            wait();
-        }
-        notifyAll();
+        allowToPass[no] = false;
+        arrivedCars[no] = false;
     }
 
     @Override
@@ -57,7 +46,7 @@ class SafeBarrier extends Barrier {
     @Override
     public synchronized void off() {
         active = false;
-        arrived = 0;
+        allowToPass = arrivedCars.clone();
         notifyAll();
     }
 
