@@ -5,26 +5,86 @@
 //Hans Henrik Lovengreen     Oct 28, 2021
 
 class DynamicBarrier extends Barrier {
+    boolean active = false;
+    boolean[] allowToPass = new boolean[9];
+    boolean[] arrivedCars = new boolean[9];
+    int treshHold = 9;
+    int arrived = 0;
+    boolean allowNewThreshold = false;
     
     public DynamicBarrier(CarDisplayI cd) {
         super(cd);
     }
 
     @Override
-    public void sync(int no) throws InterruptedException {
+    public synchronized void sync(int no) throws InterruptedException {
+        if (!active) return;
+        arrivedCars[no] = true;
+        arrived = 0;
+        for (int i = 0; i < allowToPass.length; i++) {
+            if(arrivedCars[i]) {
+                arrived++;
+            }
+        }
+        if (arrived >= treshHold) {
+            for (int i = 0; i < allowToPass.length; i++) {
+                allowToPass[i] = arrivedCars[i] || allowToPass[i];
+            }
+            for (int i = 0; i < allowToPass.length; i++) {
+                arrivedCars[i] = false;
+            }
+            allowNewThreshold = true;
+            notifyAll();
+        }
+        while (!allowToPass[no]) {
+            wait();
+        }
+        allowToPass[no] = false;
     }
 
     @Override
-    public void on() {
+    public synchronized void on() {
+        active = true;
     }
 
     @Override
-    public void off() {
+    public synchronized void off() {
+        active = false;
+        for (int i = 0; i < allowToPass.length; i++) {
+            allowToPass[i] = arrivedCars[i] || allowToPass[i];
+        }
+        for (int i = 0; i < allowToPass.length; i++) {
+            arrivedCars[i] = false;
+        }
+        allowNewThreshold = true;
+        notifyAll();
     }
 
     @Override
     /* Set barrier threshold */
-    public void set(int k) {
+    public synchronized void set(int k) {
+        if (k <= treshHold) {
+            treshHold = k;
+            arrived = 0;
+            for (int i = 0; i < allowToPass.length; i++) {
+                if(arrivedCars[i]) {
+                    arrived++;
+                }
+            }
+            if (arrived >= treshHold) {
+                for (int i = 0; i < allowToPass.length; i++) {
+                    allowToPass[i] = arrivedCars[i] || allowToPass[i];
+                }
+                for (int i = 0; i < allowToPass.length; i++) {
+                    arrivedCars[i] = false;
+                }
+                notifyAll();
+            }
+            return;
+        }
+        try {while (!allowNewThreshold) {wait();}} catch (InterruptedException e) { }
+        allowNewThreshold = false;
+        treshHold = k;
     }
 
 }
