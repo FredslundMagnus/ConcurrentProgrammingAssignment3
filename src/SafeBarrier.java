@@ -20,13 +20,18 @@ class SafeBarrier extends Barrier {
         arrivedCars[no] = true;
         carsArrived = true;
         for (int i = 0; i < allowToPass.length; i++) {
-            if(!allowToPass[i]) {
+            if(!arrivedCars[i]) {
                 carsArrived = false;
                 break;
             }
         }
         if (carsArrived == true) {
-            allowToPass = arrivedCars.clone();
+            for (int i = 0; i < allowToPass.length; i++) {
+                allowToPass[i] = arrivedCars[i] || allowToPass[i];
+            }
+            for (int i = 0; i < allowToPass.length; i++) {
+                arrivedCars[i] = false;
+            }
             notifyAll();
         }
         while (!allowToPass[no]) {
@@ -35,7 +40,6 @@ class SafeBarrier extends Barrier {
 
         notifyAll();
         allowToPass[no] = false;
-        arrivedCars[no] = false;
     }
 
     @Override
@@ -46,7 +50,12 @@ class SafeBarrier extends Barrier {
     @Override
     public synchronized void off() {
         active = false;
-        allowToPass = arrivedCars.clone();
+        for (int i = 0; i < allowToPass.length; i++) {
+            allowToPass[i] = arrivedCars[i] || allowToPass[i];
+        }
+        for (int i = 0; i < allowToPass.length; i++) {
+            arrivedCars[i] = false;
+        }
         notifyAll();
     }
 
