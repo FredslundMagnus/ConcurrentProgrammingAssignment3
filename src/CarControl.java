@@ -23,9 +23,11 @@ class Conductor extends Thread {
     Pos barpos;                      // Barrier position (provided by GUI)
     Color col;                       // Car  color
     Gate mygate;                     // Gate at start position
-
     Pos curpos;                      // Current position 
     Pos newpos;                      // New position to go to
+    boolean inAlley = false;
+    boolean notLeave = false;
+    boolean removed = false;
 
     public Conductor(int no, CarDisplayI cd, Gate g, Field field, Alley alley, Barrier barrier) {
 
@@ -37,7 +39,7 @@ class Conductor extends Thread {
         mygate = g;
         startpos = cd.getStartPos(no);
         barpos   = cd.getBarrierPos(no);  // For later use
-
+        
         col = chooseColor();
 
         // special settings for car no. 0
@@ -90,6 +92,7 @@ class Conductor extends Thread {
         return pos.equals(barpos);
     }
 
+
     public void run() {
         try {
             CarI car = cd.newCar(no, col, startpos);
@@ -99,7 +102,8 @@ class Conductor extends Thread {
 
             while (true) { 
 
-                if (atGate(curpos)) { 
+               try {
+            	if (atGate(curpos)) { 
                     mygate.pass(); 
                     car.setSpeed(chooseSpeed());
                 }
@@ -108,15 +112,46 @@ class Conductor extends Thread {
 
                 if (atBarrier(curpos)) barrier.sync(no);
                 
-                if (atEntry(curpos)) alley.enter(no);
+                if (atEntry(curpos)) {
+                	alley.enter(no);
+                	inAlley = true;
+                }
+                
                 field.enter(no, newpos);
-
+                notLeave = true;
                 car.driveTo(newpos);
+ 
 
                 field.leave(curpos);
-                if (atExit(newpos)) alley.leave(no);
+                notLeave = false;
+                
+                if (atExit(newpos)) {
+                	inAlley = false;
+                	alley.leave(no);
+                }
 
                 curpos = newpos;
+               
+               }
+               catch (InterruptedException e1){
+            	   if(notLeave)
+        		   {
+        			   field.leave(newpos);
+        			   cd.println("We left newpos");
+        			   notLeave = false;
+        		   }
+            	   if(inAlley)
+            	   {
+                	   alley.leave(no);
+                	   inAlley = false; 
+            	   }
+        		   field.leave(curpos);
+        		   cd.println("We left curpos");
+        		   removed = true;
+        		   cd.deregister(car);
+        		   notifyAll();
+               }
+                
             }
 
         } catch (Exception e) {
@@ -174,11 +209,21 @@ public class CarControl implements CarControlI{
    }
     
     public void removeCar(int no) { 
-        cd.println("Remove Car not implemented in this version");
+        conductor[no].interrupt();
     }
 
     public void restoreCar(int no) { 
-        cd.println("Restore Car not implemented in this version");
+    	if(conductor[no].removed)
+    	{
+    		conductor[no] = new Conductor(no,cd,gate[no],field,alley,barrier);
+    	    conductor[no].start();
+    	    conductor[no].removed = false;
+    	}
+    	else
+    	{
+    		cd.println("This car is already in the field");
+    	}
+    		
     }
 
     /* Speed settings for testing purposes */
@@ -192,9 +237,3 @@ public class CarControl implements CarControlI{
     }
 
 }
-
-
-
-
-
-

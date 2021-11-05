@@ -14,44 +14,49 @@ class NaiveBarrier extends Barrier {
     }
 
     @Override
-    public void sync(int no) throws InterruptedException {
+    public synchronized void sync(int no) throws InterruptedException{
 
         if (!active) return;
-        
-        arrived++;
+
+        try {
+ 			Thread.sleep(2000);
+ 		} catch (InterruptedException e1) {
+ 			// TODO Auto-generated catch block
+ 			e1.printStackTrace();
+ 		}
+        	arrived++;
             
-        synchronized(this) {
-                
             if (arrived < 9) { 
-                wait();
-            } else {
+            	wait();
+				}
+             else {
                 arrived = 0;
                 notifyAll();
             }
 
-        }
     }
 
     @Override
-    public void on() {
+    public synchronized void on() {
         active = true;
     }
 
     @Override
-    public void off() {
+    public synchronized void off() {
+
         active = false;
         arrived = 0;
-        synchronized(this) {
-            notifyAll();
-        }
+        notifyAll();
+
     }
 
 
     @Override
     // May be (ab)used for robustness testing
+    // spurious wakeup
     public synchronized void set(int k) { 
-        notifyAll();
+    	notifyAll();
     }    
- 
+   
 
 }
