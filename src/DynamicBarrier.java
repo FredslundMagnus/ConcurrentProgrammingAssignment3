@@ -11,6 +11,7 @@ class DynamicBarrier extends Barrier {
     int treshHold = 9;
     int arrived = 0;
     boolean allowNewThreshold = false;
+    int newThreshold = 9;
     
     public DynamicBarrier(CarDisplayI cd) {
         super(cd);
@@ -34,6 +35,7 @@ class DynamicBarrier extends Barrier {
                 arrivedCars[i] = false;
             }
             allowNewThreshold = true;
+            treshHold = newThreshold;
             notifyAll();
         }
         while (!allowToPass[no]) {
@@ -57,12 +59,14 @@ class DynamicBarrier extends Barrier {
             arrivedCars[i] = false;
         }
         allowNewThreshold = true;
+        treshHold = newThreshold;
         notifyAll();
     }
 
     @Override
     /* Set barrier threshold */
     public synchronized void set(int k) {
+        newThreshold = k;
         if (k <= treshHold) {
             treshHold = k;
             arrived = 0;
@@ -82,9 +86,10 @@ class DynamicBarrier extends Barrier {
             }
             return;
         }
+        allowNewThreshold = false;
         try {while (!allowNewThreshold) {wait();}} catch (InterruptedException e) { }
         allowNewThreshold = false;
-        treshHold = k;
+        // treshHold = k;
     }
 
 }
