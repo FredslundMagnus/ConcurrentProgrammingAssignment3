@@ -88,7 +88,6 @@ class DynamicBarrier extends Barrier {
         }
         allowNewThreshold = false;
         try {while (!allowNewThreshold) {wait();}} catch (InterruptedException e) { }
-        allowNewThreshold = false;
     }
 
 }
