@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fae5a6a9-2497-43ce-a54a-5c87a762ef01" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Barrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Barrier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SafeBarrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SafeBarrier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CarControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handin/CarControl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handin/DynamicBarrier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handin/MonGate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handin/NaiveBarrier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handin/SafeBarrier.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +26,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Downloads/CarControl.java" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../../Downloads/CarControl.java" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
